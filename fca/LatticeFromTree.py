@@ -26,11 +26,16 @@ dist_matrix = np.zeros((total,total))
 new_edge_list = []
 for edge in reuters.lattice:
     new_edge_list.append((edge[0], edge[1], 1))
+    new_edge_list.append((edge[1], edge[0], 1))
 
 for i in range(total):
     if i % 100 == 0:
         print("Completed " + str(i) + " rows")
     for j in range(i+1, total):
-        dist_matrix[i][j] = Dijkstra.dijkstra(new_edge_list, att_dict[att_list[i]], att_dict[att_list[j]])
+        dist = Dijkstra.dijkstra(new_edge_list, att_dict[att_list[i]], att_dict[att_list[j]])
+        try:
+            dist_matrix[i][j] = dist[0]
+        except:
+            dist_matrix[i][j] = dist
 
-print("Distances complete: "  + str(datetime.datetime.now()))
+print("Distances complete: " + str(datetime.datetime.now()))

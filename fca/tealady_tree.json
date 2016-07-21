@@ -1,0 +1,445 @@
+{
+	"Node" : 0,
+	"attributes" : [],
+	"objects" : ["Flora","Olivia","Dorothy","Katherine","Myra","Helen","Syliva","Verne","Nora","Pearl","Ruth","Eleanor","Frances","Charlotte","Theresa","Brenda","Laura","Evelyn"],
+	"own_objects" : [],
+	"ObjectCount" : "18 | 100%",
+
+	"children": [{
+		"Node" : 11,
+		"attributes" : [12],
+		"objects" : ["Verne","Myra","Katherine","Syliva","Nora","Helen"],
+		"own_objects" : ["Verne","Myra","Katherine","Syliva","Nora","Helen"],
+		"ObjectCount" : "6 | 33%"
+	},{
+		"Node" : 10,
+		"attributes" : [11],
+		"objects" : ["Nora","Helen","Olivia","Flora"],
+		"own_objects" : ["Nora","Helen","Olivia","Flora"],
+		"ObjectCount" : "4 | 22%"
+	},{
+		"Node" : 9,
+		"attributes" : [10,12],
+		"objects" : ["Myra","Katherine","Syliva","Nora","Helen"],
+		"own_objects" : ["Myra","Katherine","Syliva","Nora","Helen"],
+		"ObjectCount" : "5 | 27%"
+	},{
+		"Node" : 8,
+		"attributes" : [9],
+		"objects" : ["Evelyn","Theresa","Pearl","Ruth","Dorothy","Verne","Flora","Olivia","Nora","Syliva","Katherine","Myra"],
+		"own_objects" : ["Evelyn","Theresa","Pearl","Ruth","Dorothy"],
+		"ObjectCount" : "12 | 66%",
+
+		"children": [{
+			"Node" : 14,
+			"attributes" : [12],
+			"objects" : ["Verne","Myra","Katherine","Syliva","Nora"],
+			"own_objects" : ["Verne","Myra","Katherine","Syliva","Nora"],
+			"ObjectCount" : "5 | 27%"
+		},{
+			"Node" : 13,
+			"attributes" : [11],
+			"objects" : ["Nora","Olivia","Flora"],
+			"own_objects" : ["Nora","Olivia","Flora"],
+			"ObjectCount" : "3 | 16%"
+		},{
+			"Node" : 12,
+			"attributes" : [10,12],
+			"objects" : ["Myra","Nora","Syliva","Katherine"],
+			"own_objects" : ["Myra"],
+			"ObjectCount" : "4 | 22%",
+
+			"children": [{
+				"Node" : 15,
+				"attributes" : [13,14],
+				"objects" : ["Katherine","Syliva","Nora"],
+				"own_objects" : ["Katherine","Syliva","Nora"],
+				"ObjectCount" : "3 | 16%"
+			}]
+		}]
+	},{
+		"Node" : 7,
+		"attributes" : [8],
+		"objects" : ["Eleanor","Laura","Frances","Brenda","Helen","Dorothy","Syliva","Katherine","Myra","Verne","Ruth","Pearl","Theresa","Evelyn"],
+		"own_objects" : ["Eleanor","Laura","Frances","Brenda"],
+		"ObjectCount" : "14 | 77%",
+
+		"children": [{
+			"Node" : 18,
+			"attributes" : [12],
+			"objects" : ["Verne","Myra","Katherine","Syliva","Helen"],
+			"own_objects" : ["Verne","Myra","Katherine","Syliva","Helen"],
+			"ObjectCount" : "5 | 27%"
+		},{
+			"Node" : 17,
+			"attributes" : [10,12],
+			"objects" : ["Myra","Katherine","Syliva","Helen"],
+			"own_objects" : ["Myra","Katherine","Syliva","Helen"],
+			"ObjectCount" : "4 | 22%"
+		},{
+			"Node" : 16,
+			"attributes" : [9],
+			"objects" : ["Evelyn","Theresa","Pearl","Ruth","Dorothy","Verne","Syliva","Katherine","Myra"],
+			"own_objects" : ["Evelyn","Theresa","Pearl","Ruth","Dorothy"],
+			"ObjectCount" : "9 | 50%",
+
+			"children": [{
+				"Node" : 20,
+				"attributes" : [12],
+				"objects" : ["Verne","Myra","Katherine","Syliva"],
+				"own_objects" : ["Verne","Myra","Katherine","Syliva"],
+				"ObjectCount" : "4 | 22%"
+			},{
+				"Node" : 19,
+				"attributes" : [10,12],
+				"objects" : ["Myra","Syliva","Katherine"],
+				"own_objects" : ["Myra"],
+				"ObjectCount" : "3 | 16%",
+
+				"children": [{
+					"Node" : 21,
+					"attributes" : [13,14],
+					"objects" : ["Katherine","Syliva"],
+					"own_objects" : ["Katherine","Syliva"],
+					"ObjectCount" : "2 | 11%"
+				}]
+			}]
+		}]
+	},{
+		"Node" : 6,
+		"attributes" : [7],
+		"objects" : ["Charlotte","Nora","Helen","Syliva","Verne","Ruth","Eleanor","Brenda","Theresa","Laura"],
+		"own_objects" : ["Charlotte"],
+		"ObjectCount" : "10 | 55%",
+
+		"children": [{
+			"Node" : 25,
+			"attributes" : [12],
+			"objects" : ["Verne","Syliva","Nora","Helen"],
+			"own_objects" : ["Verne","Syliva","Nora","Helen"],
+			"ObjectCount" : "4 | 22%"
+		},{
+			"Node" : 24,
+			"attributes" : [10,12],
+			"objects" : ["Syliva","Helen","Nora"],
+			"own_objects" : ["Syliva"],
+			"ObjectCount" : "3 | 16%",
+
+			"children": [{
+				"Node" : 26,
+				"attributes" : [11],
+				"objects" : ["Nora","Helen"],
+				"own_objects" : ["Nora","Helen"],
+				"ObjectCount" : "2 | 11%"
+			}]
+		},{
+			"Node" : 23,
+			"attributes" : [9],
+			"objects" : ["Theresa","Ruth","Verne","Nora","Syliva"],
+			"own_objects" : ["Theresa","Ruth"],
+			"ObjectCount" : "5 | 27%",
+
+			"children": [{
+				"Node" : 28,
+				"attributes" : [12],
+				"objects" : ["Verne","Syliva","Nora"],
+				"own_objects" : ["Verne","Syliva","Nora"],
+				"ObjectCount" : "3 | 16%"
+			},{
+				"Node" : 27,
+				"attributes" : [10,12,13,14],
+				"objects" : ["Syliva","Nora"],
+				"own_objects" : ["Syliva","Nora"],
+				"ObjectCount" : "2 | 11%"
+			}]
+		},{
+			"Node" : 22,
+			"attributes" : [8],
+			"objects" : ["Laura","Eleanor","Brenda","Helen","Syliva","Verne","Ruth","Theresa"],
+			"own_objects" : ["Laura","Eleanor","Brenda"],
+			"ObjectCount" : "8 | 44%",
+
+			"children": [{
+				"Node" : 31,
+				"attributes" : [12],
+				"objects" : ["Verne","Syliva","Helen"],
+				"own_objects" : ["Verne","Syliva","Helen"],
+				"ObjectCount" : "3 | 16%"
+			},{
+				"Node" : 30,
+				"attributes" : [10,12],
+				"objects" : ["Syliva","Helen"],
+				"own_objects" : ["Syliva"],
+				"ObjectCount" : "2 | 11%",
+
+				"children": [{
+					"Node" : 32,
+					"attributes" : [11],
+					"objects" : ["Helen"],
+					"own_objects" : ["Helen"],
+					"ObjectCount" : "1 | 5%"
+				}]
+			},{
+				"Node" : 29,
+				"attributes" : [9],
+				"objects" : ["Theresa","Ruth","Verne","Syliva"],
+				"own_objects" : ["Theresa","Ruth"],
+				"ObjectCount" : "4 | 22%",
+
+				"children": [{
+					"Node" : 34,
+					"attributes" : [12],
+					"objects" : ["Verne","Syliva"],
+					"own_objects" : ["Verne","Syliva"],
+					"ObjectCount" : "2 | 11%"
+				},{
+					"Node" : 33,
+					"attributes" : [10,12,13,14],
+					"objects" : ["Syliva"],
+					"own_objects" : ["Syliva"],
+					"ObjectCount" : "1 | 5%"
+				}]
+			}]
+		}]
+	},{
+		"Node" : 5,
+		"attributes" : [6],
+		"objects" : ["Pearl","Frances","Evelyn","Nora","Eleanor","Brenda","Theresa","Laura"],
+		"own_objects" : [],
+		"ObjectCount" : "8 | 44%",
+
+		"children": [{
+			"Node" : 37,
+			"attributes" : [9],
+			"objects" : ["Evelyn","Theresa","Pearl","Nora"],
+			"own_objects" : ["Evelyn","Theresa","Pearl","Nora"],
+			"ObjectCount" : "4 | 22%"
+		},{
+			"Node" : 36,
+			"attributes" : [8],
+			"objects" : ["Frances","Laura","Eleanor","Brenda","Pearl","Theresa","Evelyn"],
+			"own_objects" : ["Frances","Laura","Eleanor","Brenda"],
+			"ObjectCount" : "7 | 38%",
+
+			"children": [{
+				"Node" : 38,
+				"attributes" : [9],
+				"objects" : ["Evelyn","Theresa","Pearl"],
+				"own_objects" : ["Evelyn","Theresa","Pearl"],
+				"ObjectCount" : "3 | 16%"
+			}]
+		},{
+			"Node" : 35,
+			"attributes" : [7],
+			"objects" : ["Laura","Eleanor","Brenda","Nora","Theresa"],
+			"own_objects" : ["Laura","Eleanor","Brenda"],
+			"ObjectCount" : "5 | 27%",
+
+			"children": [{
+				"Node" : 39,
+				"attributes" : [9],
+				"objects" : ["Theresa","Nora"],
+				"own_objects" : ["Theresa"],
+				"ObjectCount" : "2 | 11%",
+
+				"children": [{
+					"Node" : 40,
+					"attributes" : [10,11,12,13,14],
+					"objects" : ["Nora"],
+					"own_objects" : ["Nora"],
+					"ObjectCount" : "1 | 5%"
+				}]
+			}]
+		}]
+	},{
+		"Node" : 4,
+		"attributes" : [5],
+		"objects" : ["Ruth","Charlotte","Eleanor","Frances","Brenda","Theresa","Laura","Evelyn"],
+		"own_objects" : [],
+		"ObjectCount" : "8 | 44%",
+
+		"children": [{
+			"Node" : 43,
+			"attributes" : [8],
+			"objects" : ["Frances","Laura","Eleanor","Brenda","Ruth","Theresa","Evelyn"],
+			"own_objects" : ["Frances","Laura","Eleanor","Brenda"],
+			"ObjectCount" : "7 | 38%",
+
+			"children": [{
+				"Node" : 44,
+				"attributes" : [9],
+				"objects" : ["Evelyn","Theresa","Ruth"],
+				"own_objects" : ["Evelyn","Theresa","Ruth"],
+				"ObjectCount" : "3 | 16%"
+			}]
+		},{
+			"Node" : 42,
+			"attributes" : [7],
+			"objects" : ["Charlotte","Ruth","Eleanor","Brenda","Theresa","Laura"],
+			"own_objects" : ["Charlotte"],
+			"ObjectCount" : "6 | 33%",
+
+			"children": [{
+				"Node" : 45,
+				"attributes" : [8],
+				"objects" : ["Laura","Eleanor","Brenda","Ruth","Theresa"],
+				"own_objects" : ["Laura","Eleanor","Brenda"],
+				"ObjectCount" : "5 | 27%",
+
+				"children": [{
+					"Node" : 46,
+					"attributes" : [9],
+					"objects" : ["Theresa","Ruth"],
+					"own_objects" : ["Theresa","Ruth"],
+					"ObjectCount" : "2 | 11%"
+				}]
+			}]
+		},{
+			"Node" : 41,
+			"attributes" : [6,8],
+			"objects" : ["Evelyn","Frances","Eleanor","Brenda","Theresa","Laura"],
+			"own_objects" : ["Evelyn","Frances"],
+			"ObjectCount" : "6 | 33%",
+
+			"children": [{
+				"Node" : 47,
+				"attributes" : [7],
+				"objects" : ["Laura","Theresa","Brenda","Eleanor"],
+				"own_objects" : ["Laura","Theresa","Brenda","Eleanor"],
+				"ObjectCount" : "4 | 22%"
+			}]
+		}]
+	},{
+		"Node" : 3,
+		"attributes" : [3,5],
+		"objects" : ["Frances","Laura","Charlotte","Brenda","Theresa","Evelyn"],
+		"own_objects" : [],
+		"ObjectCount" : "6 | 33%",
+
+		"children": [{
+			"Node" : 50,
+			"attributes" : [7],
+			"objects" : ["Laura","Theresa","Brenda","Charlotte"],
+			"own_objects" : ["Laura","Theresa","Brenda","Charlotte"],
+			"ObjectCount" : "4 | 22%"
+		},{
+			"Node" : 49,
+			"attributes" : [6,8],
+			"objects" : ["Evelyn","Frances","Brenda","Theresa","Laura"],
+			"own_objects" : ["Evelyn","Frances"],
+			"ObjectCount" : "5 | 27%",
+
+			"children": [{
+				"Node" : 51,
+				"attributes" : [7],
+				"objects" : ["Laura","Theresa","Brenda"],
+				"own_objects" : ["Laura","Theresa","Brenda"],
+				"ObjectCount" : "3 | 16%"
+			}]
+		},{
+			"Node" : 48,
+			"attributes" : [4],
+			"objects" : ["Charlotte","Brenda","Theresa","Evelyn"],
+			"own_objects" : [],
+			"ObjectCount" : "4 | 22%",
+
+			"children": [{
+				"Node" : 53,
+				"attributes" : [7],
+				"objects" : ["Theresa","Brenda","Charlotte"],
+				"own_objects" : ["Theresa","Brenda","Charlotte"],
+				"ObjectCount" : "3 | 16%"
+			},{
+				"Node" : 52,
+				"attributes" : [6,8],
+				"objects" : ["Evelyn","Brenda","Theresa"],
+				"own_objects" : ["Evelyn"],
+				"ObjectCount" : "3 | 16%",
+
+				"children": [{
+					"Node" : 54,
+					"attributes" : [7],
+					"objects" : ["Theresa","Brenda"],
+					"own_objects" : ["Theresa","Brenda"],
+					"ObjectCount" : "2 | 11%"
+				}]
+			}]
+		}]
+	},{
+		"Node" : 2,
+		"attributes" : [2,3,5,6,8],
+		"objects" : ["Laura","Theresa","Evelyn"],
+		"own_objects" : [],
+		"ObjectCount" : "3 | 16%",
+
+		"children": [{
+			"Node" : 56,
+			"attributes" : [7],
+			"objects" : ["Laura","Theresa"],
+			"own_objects" : ["Laura","Theresa"],
+			"ObjectCount" : "2 | 11%"
+		},{
+			"Node" : 55,
+			"attributes" : [4,9],
+			"objects" : ["Evelyn","Theresa"],
+			"own_objects" : ["Evelyn"],
+			"ObjectCount" : "2 | 11%",
+
+			"children": [{
+				"Node" : 57,
+				"attributes" : [7],
+				"objects" : ["Theresa"],
+				"own_objects" : ["Theresa"],
+				"ObjectCount" : "1 | 5%"
+			}]
+		}]
+	},{
+		"Node" : 1,
+		"attributes" : [1,3,5,6,8],
+		"objects" : ["Brenda","Laura","Evelyn"],
+		"own_objects" : [],
+		"ObjectCount" : "3 | 16%",
+
+		"children": [{
+			"Node" : 60,
+			"attributes" : [7],
+			"objects" : ["Laura","Brenda"],
+			"own_objects" : ["Laura","Brenda"],
+			"ObjectCount" : "2 | 11%"
+		},{
+			"Node" : 59,
+			"attributes" : [4],
+			"objects" : ["Evelyn","Brenda"],
+			"own_objects" : ["Evelyn"],
+			"ObjectCount" : "2 | 11%",
+
+			"children": [{
+				"Node" : 61,
+				"attributes" : [7],
+				"objects" : ["Brenda"],
+				"own_objects" : ["Brenda"],
+				"ObjectCount" : "1 | 5%"
+			}]
+		},{
+			"Node" : 58,
+			"attributes" : [2],
+			"objects" : ["Laura","Evelyn"],
+			"own_objects" : [],
+			"ObjectCount" : "2 | 11%",
+
+			"children": [{
+				"Node" : 63,
+				"attributes" : [7],
+				"objects" : ["Laura"],
+				"own_objects" : ["Laura"],
+				"ObjectCount" : "1 | 5%"
+			},{
+				"Node" : 62,
+				"attributes" : [4,9],
+				"objects" : ["Evelyn"],
+				"own_objects" : ["Evelyn"],
+				"ObjectCount" : "1 | 5%"
+			}]
+		}]
+	}]
+}

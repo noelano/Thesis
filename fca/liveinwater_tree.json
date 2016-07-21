@@ -1,0 +1,127 @@
+{
+	"Node" : 0,
+	"attributes" : ["needs water to live"],
+	"objects" : ["corn","bean","dog","reed","water weeds","frog","bream","fish leech"],
+	"own_objects" : [],
+	"ObjectCount" : "8 | 100%",
+
+	"children": [{
+		"Node" : 4,
+		"attributes" : ["can move"],
+		"objects" : ["fish leech","dog","frog","bream"],
+		"own_objects" : ["fish leech"],
+		"ObjectCount" : "4 | 50%",
+
+		"children": [{
+			"Node" : 5,
+			"attributes" : ["has limbs"],
+			"objects" : ["bream","frog","dog"],
+			"own_objects" : ["bream","frog","dog"],
+			"ObjectCount" : "3 | 37%"
+		}]
+	},{
+		"Node" : 3,
+		"attributes" : ["needs chlorophyll"],
+		"objects" : ["bean","corn","reed","water weeds"],
+		"own_objects" : ["bean"],
+		"ObjectCount" : "4 | 50%",
+
+		"children": [{
+			"Node" : 6,
+			"attributes" : ["monocotyledon"],
+			"objects" : ["water weeds","reed","corn"],
+			"own_objects" : ["water weeds","reed","corn"],
+			"ObjectCount" : "3 | 37%"
+		}]
+	},{
+		"Node" : 2,
+		"attributes" : ["lives on land"],
+		"objects" : ["dog","frog","corn","bean","reed"],
+		"own_objects" : [],
+		"ObjectCount" : "5 | 62%",
+
+		"children": [{
+			"Node" : 8,
+			"attributes" : ["can move","has limbs"],
+			"objects" : ["frog","dog"],
+			"own_objects" : ["frog"],
+			"ObjectCount" : "2 | 25%",
+
+			"children": [{
+				"Node" : 9,
+				"attributes" : ["breast feeds"],
+				"objects" : ["dog"],
+				"own_objects" : ["dog"],
+				"ObjectCount" : "1 | 12%"
+			}]
+		},{
+			"Node" : 7,
+			"attributes" : ["needs chlorophyll"],
+			"objects" : ["corn","reed","bean"],
+			"own_objects" : [],
+			"ObjectCount" : "3 | 37%",
+
+			"children": [{
+				"Node" : 11,
+				"attributes" : ["monocotyledon"],
+				"objects" : ["reed","corn"],
+				"own_objects" : ["reed","corn"],
+				"ObjectCount" : "2 | 25%"
+			},{
+				"Node" : 10,
+				"attributes" : ["dicotyledon"],
+				"objects" : ["bean"],
+				"own_objects" : ["bean"],
+				"ObjectCount" : "1 | 12%"
+			}]
+		}]
+	},{
+		"Node" : 1,
+		"attributes" : ["lives in water"],
+		"objects" : ["bream","fish leech","water weeds","reed","frog"],
+		"own_objects" : [],
+		"ObjectCount" : "5 | 62%",
+
+		"children": [{
+			"Node" : 14,
+			"attributes" : ["can move"],
+			"objects" : ["fish leech","frog","bream"],
+			"own_objects" : ["fish leech"],
+			"ObjectCount" : "3 | 37%",
+
+			"children": [{
+				"Node" : 15,
+				"attributes" : ["has limbs"],
+				"objects" : ["bream","frog"],
+				"own_objects" : ["bream","frog"],
+				"ObjectCount" : "2 | 25%"
+			}]
+		},{
+			"Node" : 13,
+			"attributes" : ["needs chlorophyll","monocotyledon"],
+			"objects" : ["water weeds","reed"],
+			"own_objects" : ["water weeds","reed"],
+			"ObjectCount" : "2 | 25%"
+		},{
+			"Node" : 12,
+			"attributes" : ["lives on land"],
+			"objects" : ["frog","reed"],
+			"own_objects" : [],
+			"ObjectCount" : "2 | 25%",
+
+			"children": [{
+				"Node" : 17,
+				"attributes" : ["can move","has limbs"],
+				"objects" : ["frog"],
+				"own_objects" : ["frog"],
+				"ObjectCount" : "1 | 12%"
+			},{
+				"Node" : 16,
+				"attributes" : ["needs chlorophyll","monocotyledon"],
+				"objects" : ["reed"],
+				"own_objects" : ["reed"],
+				"ObjectCount" : "1 | 12%"
+			}]
+		}]
+	}]
+}

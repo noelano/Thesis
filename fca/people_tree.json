@@ -1,0 +1,61 @@
+{
+	"Node" : 0,
+	"attributes" : [],
+	"objects" : ["girl","woman","boy","man"],
+	"own_objects" : [],
+	"ObjectCount" : "4 | 100%",
+
+	"children": [{
+		"Node" : 4,
+		"attributes" : ["child"],
+		"objects" : ["boy","girl"],
+		"own_objects" : ["boy","girl"],
+		"ObjectCount" : "2 | 50%"
+	},{
+		"Node" : 3,
+		"attributes" : ["adult"],
+		"objects" : ["man","woman"],
+		"own_objects" : ["man","woman"],
+		"ObjectCount" : "2 | 50%"
+	},{
+		"Node" : 2,
+		"attributes" : ["female"],
+		"objects" : ["girl","woman"],
+		"own_objects" : [],
+		"ObjectCount" : "2 | 50%",
+
+		"children": [{
+			"Node" : 6,
+			"attributes" : ["child"],
+			"objects" : ["girl"],
+			"own_objects" : ["girl"],
+			"ObjectCount" : "1 | 25%"
+		},{
+			"Node" : 5,
+			"attributes" : ["adult"],
+			"objects" : ["woman"],
+			"own_objects" : ["woman"],
+			"ObjectCount" : "1 | 25%"
+		}]
+	},{
+		"Node" : 1,
+		"attributes" : ["male"],
+		"objects" : ["boy","man"],
+		"own_objects" : [],
+		"ObjectCount" : "2 | 50%",
+
+		"children": [{
+			"Node" : 8,
+			"attributes" : ["child"],
+			"objects" : ["boy"],
+			"own_objects" : ["boy"],
+			"ObjectCount" : "1 | 25%"
+		},{
+			"Node" : 7,
+			"attributes" : ["adult"],
+			"objects" : ["man"],
+			"own_objects" : ["man"],
+			"ObjectCount" : "1 | 25%"
+		}]
+	}]
+}

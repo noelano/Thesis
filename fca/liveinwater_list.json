@@ -1,0 +1,118 @@
+{
+	"Concepts":
+	[
+		{
+			"ConceptId" : 1,
+			"attributes" : ["needs water to live"],
+			"objects" : ["frog","reed","dog","corn","bean","bream","fish leech","water weeds"]
+		},
+
+		{
+			"ConceptId" : 2,
+			"attributes" : ["dicotyledon","needs chlorophyll","lives on land","needs water to live"],
+			"objects" : ["bean"]
+		},
+
+		{
+			"ConceptId" : 3,
+			"attributes" : ["breast feeds","has limbs","can move","lives on land","needs water to live"],
+			"objects" : ["dog"]
+		},
+
+		{
+			"ConceptId" : 4,
+			"attributes" : ["monocotyledon","needs chlorophyll","needs water to live"],
+			"objects" : ["reed","corn","water weeds"]
+		},
+
+		{
+			"ConceptId" : 5,
+			"attributes" : ["has limbs","can move","needs water to live"],
+			"objects" : ["frog","dog","bream"]
+		},
+
+		{
+			"ConceptId" : 6,
+			"attributes" : ["needs chlorophyll","needs water to live"],
+			"objects" : ["reed","corn","bean","water weeds"]
+		},
+
+		{
+			"ConceptId" : 7,
+			"attributes" : ["can move","needs water to live"],
+			"objects" : ["frog","dog","bream","fish leech"]
+		},
+
+		{
+			"ConceptId" : 8,
+			"attributes" : ["lives in water","needs water to live"],
+			"objects" : ["frog","reed","bream","fish leech","water weeds"]
+		},
+
+		{
+			"ConceptId" : 9,
+			"attributes" : ["lives on land","needs water to live"],
+			"objects" : ["frog","reed","dog","corn","bean"]
+		},
+
+		{
+			"ConceptId" : 10,
+			"attributes" : ["lives on land","lives in water","needs water to live"],
+			"objects" : ["frog","reed"]
+		},
+
+		{
+			"ConceptId" : 11,
+			"attributes" : ["lives in water","can move","needs water to live"],
+			"objects" : ["frog","bream","fish leech"]
+		},
+
+		{
+			"ConceptId" : 12,
+			"attributes" : ["lives on land","needs chlorophyll","needs water to live"],
+			"objects" : ["reed","corn","bean"]
+		},
+
+		{
+			"ConceptId" : 13,
+			"attributes" : ["lives in water","has limbs","can move","needs water to live"],
+			"objects" : ["frog","bream"]
+		},
+
+		{
+			"ConceptId" : 14,
+			"attributes" : ["lives on land","has limbs","can move","needs water to live"],
+			"objects" : ["frog","dog"]
+		},
+
+		{
+			"ConceptId" : 15,
+			"attributes" : ["lives on land","lives in water","has limbs","can move","needs water to live"],
+			"objects" : ["frog"]
+		},
+
+		{
+			"ConceptId" : 16,
+			"attributes" : ["lives in water","monocotyledon","needs chlorophyll","needs water to live"],
+			"objects" : ["reed","water weeds"]
+		},
+
+		{
+			"ConceptId" : 17,
+			"attributes" : ["lives on land","monocotyledon","needs chlorophyll","needs water to live"],
+			"objects" : ["reed","corn"]
+		},
+
+		{
+			"ConceptId" : 18,
+			"attributes" : ["lives on land","lives in water","monocotyledon","needs chlorophyll","needs water to live"],
+			"objects" : ["reed"]
+		},
+
+		{
+			"ConceptId" : 19,
+			"attributes" : ["dicotyledon","breast feeds","monocotyledon","has limbs","needs chlorophyll","can move","lives in water","lives on land","needs water to live"],
+			"objects" : []
+		}
+	]
+}

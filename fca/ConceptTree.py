@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 from graphviz import Digraph
 from operator import itemgetter
 
@@ -14,23 +15,27 @@ class ConceptTree():
         input = f.read()
         f.close()
         input = json.loads(input)
-        self.paths = []
-        self.objects = []
-        self.attributes = []
-        self.concepts = {}
-        self.edges = []
-        self.edgeDict = {}
-        self.branch_points = []
-        self.attribute_nodes = {}
-        self.object_nodes = {}
-        self.attribute_labels = {}
-        self.lattice = []
+        self.paths = []                 # Paths in the tree
+        self.objects = []               # The list of objects
+        self.attributes = []            # The list of attributes
+        self.concepts = {}              # The list of concept objects
+        self.edges = []                 # List of edges in the tree
+        self.edgeDict = {}              # Dictionary to label edges
+        self.branch_points = []         # Any nodes which form branching paths in the tree
+        self.attribute_nodes = {}       # Nodes labelled with an attribute. From the tree => contains multiples
+        self.object_nodes = {}          # Nodes labelled with an object
+        self.attribute_labels = {}      # Nodes where each attribute appears -> unique labelling
+        self.node_attributes = {}       # Same a sabove but key = node, value = attribute
+        self.lattice = []               # The list of edges in the full concept lattice
 
         self.generateEdge(input)
         self.generateEdgeDict()
         self.generatePaths([], 0)
         self.path_number = len(self.paths)
         self.addPathsToConcepts()
+
+        self._already_searched = [0]     # Used in generation of distances - records already visited nodes
+        self.distances = None           # Numpy array storing attribute distances
 
     def generateEdge(self, input_node, parent=None):
         """
@@ -254,6 +259,53 @@ class ConceptTree():
 
         self.dot.render(filename=filename, view=view)
 
+    def findNeighbours(self):
+        if not self.lattice:
+            self.generateLattice_v2()
+        for edge in self.lattice:
+            node_1 = self.concepts[edge[0]]
+            node_2 = self.concepts[edge[1]]
+            node_1.neighbours.append(edge[1])
+            node_2.neighbours.append(edge[0])
+
+    def breadthFirstSearch(self, source, current_level, level, distances_found):
+        level += 1
+        self._already_searched += current_level
+        next_level = []
+        for node in current_level:
+            next_level += self.concepts[node].neighbours
+        next_level = list(set(next_level) - set(self._already_searched))
+
+        for node in next_level:
+            if node in self.node_attributes and node not in distances_found:
+                if level < self.distances[source][node]:
+                    self.distances[source][node] = level
+                    self.distances[node][source] = level
+
+        if next_level:
+            self.breadthFirstSearch(source, next_level, level, distances_found)
+
+    def resetSearch(self):
+        self._search_counter = None
+        if 0 not in self.node_attributes:
+            self._already_searched = [0]    # The root node is removed when calculating the distances between nodes.
+        else:
+            self._already_searched = []
+
+    def generateDistances(self):
+        for key in self.attribute_labels:
+            self.node_attributes[self.attribute_labels[key]] = key
+
+        base = [["Inf" for att in self.node_attributes] for att in self.node_attributes]
+        self.distances = pd.DataFrame(index=self.node_attributes.keys(), columns=self.node_attributes.keys(), data=base)
+        distances_found = []
+        for i in self.node_attributes:
+            #print("Working on ", i)
+            self.resetSearch()
+            self.distances[i][i] = 0
+            self.breadthFirstSearch(i, [i], 0, distances_found)
+            distances_found.append(i)
+
 
 class Concept:
     """
@@ -268,6 +320,7 @@ class Concept:
         self.full_intent = intent[:]
         self.paths = paths[:]
         self.children = []
+        self.neighbours = []
 
     def addPath(self, node):
         self.paths.append(node)
@@ -283,7 +336,7 @@ if __name__ == "__main__":
     input_file = "liveinwater_tree.json"
     tree = ConceptTree(input_file)
 
-    test_type = 2
+    test_type = 5
 
     if test_type == 0:
         print(tree.attributes)
@@ -325,3 +378,13 @@ if __name__ == "__main__":
         print("Attributes:")
         for a in tree.attribute_nodes:
             print("\t" + str(a) + ": " + str(tree.attribute_nodes[a]))
+
+    if test_type == 5:
+        # Test shortest path seach
+        tree.generateLattice_v2()
+        tree.findNeighbours()
+        print(tree.attribute_labels.values())
+        print(tree.attributes)
+
+        tree.generateDistances()
+        print tree.distances.values

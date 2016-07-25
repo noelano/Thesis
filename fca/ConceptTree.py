@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 from graphviz import Digraph
-from operator import itemgetter
+import numpy as np
 
 class ConceptTree():
     """
@@ -24,6 +24,7 @@ class ConceptTree():
         self.branch_points = []         # Any nodes which form branching paths in the tree
         self.attribute_nodes = {}       # Nodes labelled with an attribute. From the tree => contains multiples
         self.object_nodes = {}          # Nodes labelled with an object
+        self.object_labels = {}         # Nodes where each object appears (Unique labelling)
         self.attribute_labels = {}      # Nodes where each attribute appears -> unique labelling
         self.node_attributes = {}       # Same a sabove but key = node, value = attribute
         self.lattice = []               # The list of edges in the full concept lattice
@@ -48,7 +49,7 @@ class ConceptTree():
         current_node = input_node["Node"]
         node = Concept(current_node, input_node["attributes"], input_node["objects"], input_node["own_objects"])
 
-        for object in node.extent:
+        for object in node.own_objects:
             try:
                 self.object_nodes[object].append(current_node)
             except:
@@ -65,6 +66,7 @@ class ConceptTree():
             self.edges.append((parent, current_node))
             # Add child to the parent and take the intent from the parent
             self.concepts[parent].addChild(current_node)
+            self.concepts[current_node].addParent(parent)
             node.extendIntent(self.concepts[parent].full_intent[:])
 
         # Check for children - if any, repeat the path recursively
@@ -187,6 +189,14 @@ class ConceptTree():
                 # Multiple nodes => edges have been cut => Form the completed sub-lattice
                 self.subLatticeGeneration(self.attribute_nodes[att], att)
 
+        for obj in self.object_nodes:
+            if len(self.object_nodes[obj]) == 1:
+                # Set the label as the only node manifesting the object
+                self.object_labels[obj] = self.object_nodes[obj][0]
+            else:
+                # Multiple nodes => edges have been cut => Form the completed super-lattice
+                self.superLatticeGeneration(self.object_nodes[obj], obj)
+
         # The lattice may contain duplicates of the same edge - use the 'set' object to remove these
         self.lattice = list(set(self.lattice))
         self.lattice.sort()
@@ -225,11 +235,46 @@ class ConceptTree():
                     if direct:
                         self.lattice.append((n, node))
 
+    def superLatticeGeneration(self, node_list, obj):
+        """
+        The key step in the lattice generation - forming the super-lattice from the list of input nodes
+        :param node_list: list of nodes forming the super-lattice
+        """
+        for node in node_list:
+            concept = self.concepts[node]
+            possible_predecessors = []
+            new_list = node_list[:]
+            new_list.remove(node)
+            for test_node in new_list:
+                nodes_to_check = self.getParentsFromNode(test_node)
+                for n in nodes_to_check:
+                    test_concept = self.concepts[n]
+                    if set(test_concept.extent).issubset(set(concept.extent)):
+                        possible_predecessors.append(n)
+
+            if not possible_predecessors:
+                self.object_labels[obj] = node
+            elif len(possible_predecessors) == 1:
+                self.lattice.append((node, possible_predecessors[0]))
+                #print("Object adding node: ", node, possible_predecessors[0])
+            else:
+                for n in possible_predecessors:
+                    direct = 1
+                    test_concept = self.concepts[n]
+                    rest = possible_predecessors
+                    rest.remove(n)
+                    for p in rest:
+                        if set(test_concept.extent).issubset(set(self.concepts[p].extent)):
+                            direct = 0
+                            break
+                    if direct:
+                        self.lattice.append((n, node))
+                        #print("Object adding node: ",n,node)
+
     def getChildrenFromNode(self, node):
         """
         Recursively generate list of all dependents starting at given node
         :param node: index of a concept node
-        :param node_list: list of existing nodes that have been appended so far
         :return: list of dependent nodes
         """
         concept = self.concepts[node]
@@ -237,6 +282,20 @@ class ConceptTree():
         if concept.children:
             for child in concept.children:
                 node_list += self.getChildrenFromNode(child)
+
+        return node_list
+
+    def getParentsFromNode(self, node):
+        """
+        Recursively generate list of all parents starting at given node
+        :param node: index of a concept node
+        :return: list of dependent nodes
+        """
+        concept = self.concepts[node]
+        node_list = [node]
+        if concept.parents:
+            for parent in concept.parents:
+                node_list += self.getParentsFromNode(parent)
 
         return node_list
 
@@ -321,6 +380,7 @@ class Concept:
         self.paths = paths[:]
         self.children = []
         self.neighbours = []
+        self.parents = []
 
     def addPath(self, node):
         self.paths.append(node)
@@ -330,6 +390,9 @@ class Concept:
 
     def addChild(self, child):
         self.children.append(child)
+
+    def addParent(self, parent):
+        self.parents.append(parent)
 
 
 if __name__ == "__main__":
@@ -358,6 +421,7 @@ if __name__ == "__main__":
             print concept.label, concept.intent, concept.extent
 
     if test_type == 2:
+        print(tree.object_nodes)
         tree.generateLattice_v2()
         lattice = list(set(tree.lattice))
         lattice.sort()
@@ -388,3 +452,23 @@ if __name__ == "__main__":
 
         tree.generateDistances()
         print tree.distances.values
+        max = tree.distances.values.max()
+        print(max)
+        att_leng = len(tree.attributes)
+        prox_seed = [[0.0 for i in range(att_leng)] for i in range(att_leng)]
+        proximity_matrix = np.array(prox_seed)
+
+        for i in range(att_leng):
+            for j in range(att_leng):
+                proximity_matrix[i][j] = 1 - float(tree.distances.values[i][j]) / float(max)
+
+        print(proximity_matrix)
+
+    if test_type == 6:
+        l1 = tree.getParentsFromNode(9)
+        l2 = tree.getParentsFromNode(5)
+
+        for n in l1:
+            print n, tree.concepts[n].extent
+        for n in l2:
+            print n, tree.concepts[n].extent

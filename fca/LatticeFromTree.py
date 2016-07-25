@@ -16,6 +16,7 @@ for path in reuters.paths:
 
 print("Maximum path length: " + str(max))
 reuters.generateLattice_v2()
+print(len(reuters.lattice))
 print("Lattice complete: " + str(datetime.datetime.now()))
 #reuters.visualiseLattice("reuters_graph", view=True)
 print(len(reuters.attributes))
@@ -28,19 +29,23 @@ reuters.generateDistances()
 print(reuters.distances.values)
 print("Distances complete: " + str(datetime.datetime.now()))
 
-input = "../DataEngineering/reuters_tdm.csv"
+input = "../DataEngineering/CleanTrainingData/clean_reuters_tdm.csv"
 f = open(input)
 vocab = f.readline()
 f.close()
+vocab = vocab[:-1]
+vocab = vocab.split(',')
 vocab_leng = len(vocab)
-proximity_matrix = np.array((vocab_leng, vocab_leng))
+prox_seed = [[0.0 for i in range(vocab_leng)] for i in range(vocab_leng)]
+proximity_matrix = np.array(prox_seed)
 
 max_sd = reuters.distances.values.max()
-for i in vocab:
-    node_i = reuters.attribute_labels[i]
-    for j in vocab:
-        node_j = reuters.attribute_labels[j]
-        proximity_matrix[i][j] = 1 - (reuters.distances[node_i][node_j] / max_sd)
+print("Maximum distance: ", max_sd)
+for i in range(vocab_leng):
+    node_i = reuters.attribute_labels[vocab[i]]
+    for j in range(vocab_leng):
+        node_j = reuters.attribute_labels[vocab[j]]
+        proximity_matrix[i][j] = 1 - (float(reuters.distances[node_i][node_j]) / float(max_sd))
 
 print(proximity_matrix)
 print("Proximities complete: " + str(datetime.datetime.now()))

@@ -1,7 +1,8 @@
 from ConceptTree import Concept, ConceptTree
-import datetime
+import datetime, random
 import numpy as np
 import pandas as pd
+from Dijkstra import dijkstra
 
 input_file = "reuters_tree.json"
 print("Start time: " + str(datetime.datetime.now()))
@@ -24,11 +25,22 @@ print(len(reuters.attribute_labels))
 print(len(reuters.attribute_nodes))
 print(len(reuters.node_attributes))
 
+"""
 reuters.findNeighbours()
 reuters.generateDistances()
 print(reuters.distances.values)
 print("Distances complete: " + str(datetime.datetime.now()))
-
+"""
+edge_list = []
+for edge in reuters.lattice:
+    if edge[0] != 0 and edge[1] != 0:
+        edge_list.append((edge[0], edge[1], 1))
+        edge_list.append((edge[1], edge[0], 1))
+test_nodes = random.sample(reuters.concepts, 50)
+for i in test_nodes:
+    for j in test_nodes:
+        print dijkstra(edge_list, i, j)
+"""
 input = "../DataEngineering/CleanTrainingData/clean_reuters_tdm.csv"
 f = open(input)
 vocab = f.readline()
@@ -56,3 +68,4 @@ new_TDM = np.dot(X.values, proximity_matrix)
 
 print("New TDM complete: " + str(datetime.datetime.now()))
 np.savetxt("reuters_new_tdm.csv", new_TDM, delimiter=',')
+"""

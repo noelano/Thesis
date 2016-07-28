@@ -14,7 +14,7 @@ except:
 print("Start time: " + str(datetime.datetime.now()))
 
 # Set input TDM file
-input = "../DataEngineering/reuters_tdm.csv"
+input = "../DataEngineering/CleanTrainingData/clean_reuters_tdm.csv"
 
 # Load header row and tdm
 f = open(input)

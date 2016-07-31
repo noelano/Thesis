@@ -26,7 +26,7 @@ class ConceptTree():
         self.object_nodes = {}          # Nodes labelled with an object
         self.object_labels = {}         # Nodes where each object appears (Unique labelling)
         self.attribute_labels = {}      # Nodes where each attribute appears -> unique labelling
-        self.node_attributes = {}       # Same a sabove but key = node, value = attribute
+        self.node_attributes = {}       # Same as above but key = node, value = attribute
         self.lattice = []               # The list of edges in the full concept lattice
 
         self.generateEdge(input)
@@ -54,11 +54,12 @@ class ConceptTree():
                 self.object_nodes[object].append(current_node)
             except:
                 self.object_nodes[object] = [current_node]
+        """
         for attribute in node.intent:
             try:
                 self.attribute_nodes[attribute].append(current_node)
             except:
-                self.attribute_nodes[attribute] = [current_node]
+                self.attribute_nodes[attribute] = [current_node]"""
         self.objects = list(set(self.objects).union(set(node.extent)))
         self.attributes = list(set(self.attributes).union(set(node.intent)))
         self.concepts[input_node["Node"]] = node
@@ -68,6 +69,11 @@ class ConceptTree():
             self.concepts[parent].addChild(current_node)
             self.concepts[current_node].addParent(parent)
             node.extendIntent(self.concepts[parent].full_intent[:])
+        for attribute in node.full_intent:
+            try:
+                self.attribute_nodes[attribute].append(current_node)
+            except:
+                self.attribute_nodes[attribute] = [current_node]
 
         # Check for children - if any, repeat the path recursively
         try:
@@ -179,23 +185,26 @@ class ConceptTree():
         The node list attached to each such attribute will in fact form a sub-lattice
         By iterating over this, the remaining connections can be added back
         """
-        self.lattice = self.edges[:]
+        #self.lattice = self.edges[:]
+        self.lattice = []
 
         for att in self.attribute_nodes:
-            if len(self.attribute_nodes[att]) == 1:
+            self.subLatticeGeneration(self.attribute_nodes[att], att)
+            """if len(self.attribute_nodes[att]) == 1:
                 # Set the label as the only node manifesting the attribute
                 self.attribute_labels[att] = self.attribute_nodes[att][0]
             else:
                 # Multiple nodes => edges have been cut => Form the completed sub-lattice
-                self.subLatticeGeneration(self.attribute_nodes[att], att)
+                self.subLatticeGeneration(self.attribute_nodes[att], att)"""
 
-        for obj in self.object_nodes:
+        """for obj in self.object_nodes:
+            self.superLatticeGeneration(self.object_nodes[obj], obj)
             if len(self.object_nodes[obj]) == 1:
                 # Set the label as the only node manifesting the object
                 self.object_labels[obj] = self.object_nodes[obj][0]
             else:
                 # Multiple nodes => edges have been cut => Form the completed super-lattice
-                self.superLatticeGeneration(self.object_nodes[obj], obj)
+                self.superLatticeGeneration(self.object_nodes[obj], obj)"""
 
         # The lattice may contain duplicates of the same edge - use the 'set' object to remove these
         self.lattice = list(set(self.lattice))
@@ -226,7 +235,7 @@ class ConceptTree():
                 for n in possible_predecessors:
                     direct = 1
                     test_concept = self.concepts[n]
-                    rest = possible_predecessors
+                    rest = possible_predecessors[:]
                     rest.remove(n)
                     for p in rest:
                         if set(test_concept.full_intent).issubset(set(self.concepts[p].full_intent)):
@@ -261,7 +270,7 @@ class ConceptTree():
                 for n in possible_predecessors:
                     direct = 1
                     test_concept = self.concepts[n]
-                    rest = possible_predecessors
+                    rest = possible_predecessors[:]
                     rest.remove(n)
                     for p in rest:
                         if set(test_concept.extent).issubset(set(self.concepts[p].extent)):

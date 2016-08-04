@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 import numpy as np
 
-input_file = "reuters_list.json"
+input_file = "snippets_list.json"
 print("Start time: " + str(datetime.datetime.now()))
 reuters = Galois(input_file)
 print("Lattice built: " + str(datetime.datetime.now()))
@@ -17,7 +17,7 @@ print("Distances complete: " + str(datetime.datetime.now()))
 max_sd = reuters.distances.values.max()
 print(max_sd)
 
-input = "../DataEngineering/CleanTrainingData/clean_reuters_tdm.csv"
+input = "../clean_snippets_tdm.csv"
 f = open(input)
 vocab = f.readline()
 f.close()
@@ -36,16 +36,16 @@ for i in vocab:
 print(proximity_matrix)
 print("Proximities complete: " + str(datetime.datetime.now()))
 
-proximity_matrix.to_csv("reuters_proximities.csv")
+proximity_matrix.to_csv("snippets_proximities.csv")
 TDM = pd.read_csv(input, delimiter=',')
 # Change to decimal representation for TDM
 TDM = TDM.div(TDM.sum(axis=1), axis=0)
 
 # Ensure the column orders match before taking dot product
-TDM.sort_index(axis=1)
-proximity_matrix.sort_index(axis=1)
-new_TDM = np.dot(TDM.values, proximity_matrix.values)
-
-new_df = pd.DataFrame(data=new_TDM, columns=TDM.columns)
+#TDM.sort_index(axis=1)
+#proximity_matrix.sort_index(axis=1)
+#new_TDM = np.dot(TDM.values, proximity_matrix.values)
+new_TDM = TDM.dot(proximity_matrix)
+#new_df = pd.DataFrame(data=new_TDM, columns=TDM.columns)
 print("New TDM complete: " + str(datetime.datetime.now()))
-new_df.to_csv("reuters_new_tdm.csv")
+new_TDM.to_csv("snippets_new_tdm.csv")

@@ -1,7 +1,7 @@
 import pandas as pd
 
 reuters = "../DataEngineering/CleanTrainingData/clean_reuters_tdm.csv"
-snippets = "../DataEngineering/CleanTrainingData/clean_snippets_tdm.csv"
+snippets = "../clean_snippets_tdm.csv"
 
 def makeContextCsv(file, output_file):
     """ Generate a context csv from the input tdm """
@@ -70,5 +70,5 @@ def makeContext(file, output_file):
     print("Context complete")
     f.close()
 
-makeContext(reuters, "reuters.cxt")
+#makeContext(reuters, "reuters.cxt")
 makeContext(snippets, "snippets.cxt")

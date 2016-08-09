@@ -2,7 +2,7 @@ import lda
 import pandas as pd
 import numpy as np
 
-def ldaModel(X, n_topics, alpha, beta, output_File=None, n_iter=2000):
+def ldaModel(X_train, X_test, n_topics, alpha, beta, logger, output_File=None, n_iter=2000):
     """
     Generate an LDA model for an input TDM file
 
@@ -14,24 +14,48 @@ def ldaModel(X, n_topics, alpha, beta, output_File=None, n_iter=2000):
     :return: Term weights as a pandas dataframe
     """
 
+    cols = X_train.columns[:]
     model = lda.LDA(n_topics=n_topics, n_iter=n_iter, random_state=1, alpha=alpha, eta=beta)
-    model.fit(X.values)
+    model.fit(X_train.values)
+
+    score = str(model.loglikelihood())
+    print ("Log likelihood: " + score)
+    logger.write(str(n_topics) + ": " + score + "\n")
 
     Y = np.dot(model.doc_topic_, model.components_)
-    Y = pd.DataFrame(data=Y)
+    Y = pd.DataFrame(data=Y, columns=cols)
+
+    test_dist = model.transform(X_test.values)
+
+    Y_test = np.dot(test_dist, model.components_)
+    Y_test = pd.DataFrame(data=Y_test, columns=cols)
 
     if output_File:
-        Y.to_csv(output_File, index=False)
+        Y.to_csv(output_File + ".csv", index=False)
+        Y_test.to_csv(output_File + "_test.csv", index=False)
 
     return Y
 
-def createLDAFiles(alphas, betas, input, topics, output):
-    X = pd.read_csv(input, delimiter=',')
+
+def perplexity(theta, phi, docs):
+    if docs == None: return
+    log_per = 0
+    N = 0
+    for m, doc in enumerate(docs):
+        for w in doc:
+            log_per -= np.log(np.inner(phi[:, w], theta))
+        N += len(doc)
+    return np.exp(log_per / N)
+
+def createLDAFiles(alphas, betas, train_input, test_input, topics, output, logger):
+    X_train = pd.read_csv(train_input, delimiter=',')
+    X_test = pd.read_csv(test_input, delimiter=',', index_col=0)
     for t in topics:
         a = 50.0 / t
+        #b = 0.05
         b = 0.029
-        label = output + "_" + str(a) + "_" + str(b) + "_" + str(t) + ".csv"
-        Y = ldaModel(X, t, a, b, output_File=label)
+        label = output + "_" + str(a) + "_" + str(b) + "_" + str(t)
+        Y = ldaModel(X_train, X_test, t, a, b, output_File=label, logger=logger)
 
 if __name__ == "__main__":
     import datetime
@@ -41,11 +65,15 @@ if __name__ == "__main__":
 
     # Set input TDM file
     input = "../clean_snippets_tdm.csv"
+    test = "../DataEngineering/CleanTestData/snippets_tdm.csv"
 
-    topics = [81 + i for i in range(20)]
+    #topics = [1 + i for i in range(0, 150, 5)]
+    topics = [161]
     alphas = [50]
     betas = [0.05]
 
     output = "Snippets/snippets_lda"
+    logger = open("Snippets/log_likelihoods2.txt", "w")
 
-    createLDAFiles(alphas, betas, input, topics, output)
+    createLDAFiles(alphas, betas, input, test, topics, output, logger)
+    logger.close()

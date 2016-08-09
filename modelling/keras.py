@@ -3,7 +3,7 @@ from keras.layers import Dense, Dropout
 import pandas as pd
 
 train_file = "../fca/snippets_new_tdm.csv"
-test_file = ""
+test_file = "../DataEngineering/CleanTestData/snippets_tdm.csv"
 
 train = pd.read_csv(train_file, delimiter=',', index_col=0)
 col_len = len(train.columns)
@@ -26,7 +26,7 @@ test = pd.read_csv(test_file, delimiter=',', index_col=0)
 
 X_test = test.values
 
-f = open("../DataEngineering/snippets_labels.txt")
+f = open("../DataEngineering/CleanTestData/snippets_test_labels.txt")
 labels = f.readlines()
 f.close()
 
@@ -50,8 +50,7 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 model.fit(X_train, y_train,
-          nb_epoch=20,
-          batch_size=16)
+          nb_epoch=20)
 
 y_pred = model.predict(X_test)
 
@@ -59,7 +58,7 @@ f = open("Snippets_Results.txt", "w")
 f.write(str(y_pred))
 f.write("\n")
 
-score = model.evaluate(X_test, y_test, batch_size=16)
+score = model.evaluate(X_test, y_test)
 
 f.write(str(score))
 f.close()

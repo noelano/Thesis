@@ -4,18 +4,19 @@ import datetime
 import numpy as np
 from elbow import *
 
-train_file = "../fca/snippets_new_tdm.csv"
+train_file = "../lda/Snippets/snippets_lda_0.310559006211_0.029_161.csv"
 #test_file = ""
 
 print("Start time: " + str(datetime.datetime.now()))
 train = pd.read_csv(train_file, index_col=0)
+
 #train.drop(train.index[[2635]], inplace=True)
 #print np.any(np.isnan(train.values))
 #print np.all(np.isfinite(train.values))
 
 print("Data loaded: " + str(datetime.datetime.now()))
 
-elbow(train, 10, 50)
+elbow2(train, 1, 22, 2, "elbow_lda_snippets_sse.png")
 print("Modelling Complete: " + str(datetime.datetime.now()))
 """vocab = train.columns
 s = ''

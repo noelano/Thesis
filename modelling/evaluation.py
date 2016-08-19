@@ -1,7 +1,7 @@
 import pandas as pd
 
 def resultsFromMatrix(confusion_matrix):
-    total_records = sum(confusion_matrix.all())
+    total_records = sum(sum(confusion_matrix.values))
 
     precisions = []
     recalls = []
@@ -11,6 +11,7 @@ def resultsFromMatrix(confusion_matrix):
         TP = confusion_matrix[i][i]
         FP = sum(confusion_matrix[i]) - TP
         FN = sum(confusion_matrix.loc[i]) - TP
+        instances = sum(confusion_matrix.loc[i])
 
         if TP+FP != 0:
             precision = float(TP) / (TP + FP)
@@ -25,21 +26,25 @@ def resultsFromMatrix(confusion_matrix):
         else:
             f = 0
 
-        precisions.append(precision)
-        recalls.append(recall)
-        fs.append(f)
+        precisions.append(instances * precision)
+        recalls.append(instances * recall)
+        fs.append(instances * f)
 
-        print(i, precision, recall, f)
+        print(i, precision, recall, f, instances)
 
-    cols = float(len(confusion_matrix.columns))
-    p = sum(precisions) / cols
-    r = sum(recalls) / cols
-    f = sum(fs) / cols
+    #total = float(len(confusion_matrix.columns))
+    # NB this should be changed to only include the rows where there is an actual instance labelled with that class
+    # The reuters data has a number of classes which aren't in fact present, leading to the averages being too small
+    p = sum(precisions) / total_records
+    r = sum(recalls) / total_records
+    f = sum(fs) / total_records
 
     return p, r, f
 
 if __name__ == "__main__":
-    input = "NN_Results/fca_snippets_confusion.csv"
+    #input = "NN_Results/TopPercentile/snippets_lda_0.310559006211_0.029_161_results.csv"
+    #input = "NN_Results/TopPercentile/reuters_lda_0.276243093923_0.05_181_results.csv"
+    input = "KMeans_Results/Percentile/snippets_lda_confusion.csv"
 
     df = pd.read_csv(input, index_col=0)
     #print(df.loc["sports"])

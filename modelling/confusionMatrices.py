@@ -49,10 +49,16 @@ def makeConfusionMatrix(results_file, train_labels_file, test_labels_file, outpu
     df.to_csv(output_file)
 
 if __name__ == "__main__":
-    results = "NN_Results/fca_snippets_results.txt"
+    results = "NN_Results/TopPercentile/snippets_lda_0.310559006211_0.029_161_results.txt"
     #results = "NN_Results/fca_reuters_results.txt"
-    train_labels = "../DataEngineering/snippets_labels.txt"
-    test_labels = "../DataEngineering/CleanTestData/snippets_test_labels.txt"
-    output = "NN_Results/fca_snippets_confusion.csv"
+    #train_labels = "../DataEngineering/labelsReutersTraining.txt"
+    #test_labels = "../DataEngineering/CleanTestData/labelsReutersTest.txt"
+    #train_labels = "../ref_labels/labelsReutersTraining.txt"
+    #test_labels = "../ref_labels/labelsReutersTest.txt"
+    #train_labels = "../new_snippets_labels.txt"
+    #test_labels = "../DataEngineering/CleanTestData/snippets_test_labels.txt"
+    train_labels = "../ref_labels/new_snippets_labels.txt"
+    test_labels = "../ref_labels/snippets_test_labels.txt"
+    output = "NN_Results/ConfusionMatrices/Percentile/lda_snippets_confusion.csv"
 
     makeConfusionMatrix(results, train_labels, test_labels, output)

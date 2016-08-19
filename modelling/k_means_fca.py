@@ -4,7 +4,7 @@ import datetime
 import numpy as np
 from elbow import *
 
-train_file = "../fca/reuters_new_tdm.csv"
+train_file = "../lda/Reuters/reuters_lda_0.276243093923_0.05_181.csv"
 #test_file = ""
 
 print("Start time: " + str(datetime.datetime.now()))
@@ -12,7 +12,7 @@ train = pd.read_csv(train_file, index_col=0)
 
 print("Data loaded: " + str(datetime.datetime.now()))
 
-elbow2(train, 1, 180, 10, "elbow_fca_reuters_sse3.png")
+elbow2(train, 1, 180, 10, "elbow_lda_reuters_sse3.png")
 print("Modelling Complete: " + str(datetime.datetime.now()))
 """vocab = train.columns
 s = ''

@@ -43,8 +43,8 @@ def resultsFromMatrix(confusion_matrix):
 
 if __name__ == "__main__":
     #input = "NN_Results/TopPercentile/snippets_lda_0.310559006211_0.029_161_results.csv"
-    #input = "NN_Results/TopPercentile/reuters_lda_0.276243093923_0.05_181_results.csv"
-    input = "KMeans_Results/Percentile/snippets_lda_confusion.csv"
+    #input = "NN_Results/ConfusionMatrices/Correlations/fca_reuters_confusion.csv"
+    input = "KMeans_Results/Correlations/snippets_fca_confusion.csv"
 
     df = pd.read_csv(input, index_col=0)
     #print(df.loc["sports"])
